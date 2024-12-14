@@ -31,8 +31,8 @@ export default function LandingPage() {
       <Image
         src={FullSingerShot}
         alt="Full Singer Shot"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
       />
 
       <div className="absolute top-10">
