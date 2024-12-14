@@ -32,16 +32,14 @@ export default function LandingPage() {
         src={FullSingerShot}
         alt="Full Singer Shot"
         fill
-        style={{ objectFit: "cover" }}
+        className="object-cover"
       />
 
       <div className="absolute top-10">
         <Image
           src={Logo}
           alt="The Pact Logo"
-          layout="fixed"
-          width={150}
-          height={150}
+          className="w-24 h-24 md:w-36 md:h-36"
         />
       </div>
     </div>
