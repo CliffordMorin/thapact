@@ -9,8 +9,8 @@ const Page404 = () => {
           404 page not found!
         </Typography>
         <Typography variant="h3" sx={{ pb: 5 }}>
-          "Getting lost is not a waste of time. To be lost is as legitimate a
-          part of your process as being found."
+          “Getting lost is not a waste of time. To be lost is as legitimate a
+          part of your process as being found.”
         </Typography>
         <Typography variant="h3" sx={{ pb: 5 }}>
           Although, to not be lost anymore click this button.
