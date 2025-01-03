@@ -14,7 +14,6 @@ export default function LandingPage() {
 
   return (
     <div className="relative h-screen flex items-start justify-center">
-      <HamburgerMenu />
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
         <h1 className="text-2xl font-bold text-center text-black">
           Welcome to ThaPact Music Collective
@@ -35,12 +34,17 @@ export default function LandingPage() {
         className="object-cover"
       />
 
-      <div className="absolute top-10">
-        <Image
-          src={Logo}
-          alt="The Pact Logo"
-          className="w-24 h-24 md:w-36 md:h-36"
-        />
+      <div className="absolute top-10 w-full flex justify-between items-center px-4 md:top-8">
+        <div className="flex items-center">
+          <Image
+            src={Logo}
+            alt="The Pact Logo"
+            className="w-28 h-28 md:w-40 md:h-40"
+          />
+        </div>
+        <div className="flex items-center ml-auto">
+          <HamburgerMenu />
+        </div>
       </div>
     </div>
   );
