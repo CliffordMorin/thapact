@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Bounce } from "react-awesome-reveal";
 import useTheme from "@mui/material/styles/useTheme";
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 import { SiBandsintown } from "react-icons/si";
 import UpcomingEventCard from "./UpcomingEventCard";
 import PrevEventCard from "./PrevEventCard";
@@ -71,14 +71,14 @@ const CalendarV2 = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Josh Lee and the Family | Calendar</title>
+      <Head>
+        <title>ThaPact | Calendar</title>
         <meta
           name="description"
-          content="Josh Lee and the Family Calendar with dates of upcoming shows, concerts and public events."
+          content="ThaPact Calendar with dates of upcoming shows, concerts and public events."
         />
         <link rel="canonical" href="/calendar" />
-      </Helmet>
+      </Head>
       <Typography
         variant="h2"
         align="center"
