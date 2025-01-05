@@ -6,7 +6,7 @@ import Logo from "../../../public/thaPactLogo.svg";
 import FullSingerShot from "../../../public/fullSingerShot.png";
 import Popup from "../Popup";
 import HamburgerMenu from "../HamburgerMenu";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
 
 export default function LandingPage() {
@@ -14,7 +14,7 @@ export default function LandingPage() {
 
   const closePopup = () => setIsPopupOpen(false);
 
-  const arrowVariants = {
+  const arrowVariants: Variants = {
     animate: {
       y: [0, 10, 0],
       transition: {
