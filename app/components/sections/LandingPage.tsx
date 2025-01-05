@@ -20,7 +20,7 @@ export default function LandingPage() {
       transition: {
         duration: 1,
         repeat: Infinity,
-        repeatType: "loop",
+        repeatType: "loop" as const,
       },
     },
   };
