@@ -12,6 +12,11 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        canelaLight: ["Canela-Light", "sans-serif"],
+        canelaItalic: ["Canela-LightItalic", "sans-serif"],
+        neueMontreal: ["PP Neue Montreal", "sans-serif"],
+      },
     },
   },
   plugins: [],

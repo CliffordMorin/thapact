@@ -52,7 +52,7 @@ export default function LandingPage() {
           <Image
             src={Logo}
             alt="The Pact Logo"
-            className="w-28 h-28 md:w-60 md:h-60"
+            className="w-[140px] h-[140px] md:w-60 md:h-60"
           />
         </div>
         <div className="flex items-center ml-auto">

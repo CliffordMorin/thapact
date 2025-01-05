@@ -10,7 +10,7 @@ const HamburgerMenu: React.FC = () => {
   return (
     <div className="z-50">
       <button
-        className="flex flex-col items-left justify-center w-20 h-20 space-y-3 z-50"
+        className="flex flex-col items-left justify-center w-15 h-15 space-y-3 z-50 md:w-20 md:h-20"
         onClick={toggleMenu}
       >
         <motion.span
@@ -53,7 +53,7 @@ const HamburgerMenu: React.FC = () => {
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the menu
           >
             <button
-              className="absolute top-14 right-5 flex flex-col items-right justify-center w-20 h-20 space-y-3 z-50" // styling for location of close button
+              className="absolute top-20 right-5 flex flex-col items-right justify-center space-y-3 z-50 w-15 h-15 md:w-20 md:h-20 md:top-5" // styling for location of close button
               onClick={toggleMenu}
             >
               <motion.span
