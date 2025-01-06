@@ -81,9 +81,15 @@ const CalendarV2 = () => {
       <Typography
         variant="h2"
         align="center"
-        sx={{ pt: 5, pb: 2, color: "#FEFCE8" }}
+        sx={{
+          pt: 5,
+          pb: 2,
+          color: "#FEFCE8",
+          fontFamily: "Canela-Light, sans-serif",
+          fontWeight: "bold",
+        }}
       >
-        <div className="animate-bounce">{toggleShows}</div>
+        <div>{toggleShows}</div>
       </Typography>
       <Divider
         sx={{
