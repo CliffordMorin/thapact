@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Logo from "../../../public/thaPactLogo.svg";
+import Logo from "../../../public/thaPactLogoBanner.svg";
 import FullSingerShot from "../../../public/fullSingerShot.png";
 import Popup from "../Popup";
 import HamburgerMenu from "../HamburgerMenu";
@@ -26,7 +26,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="relative h-screen flex items-start justify-center">
+    <div className="relative h-screen flex items-end justify-center">
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
         <h1 className="text-2xl font-bold text-center text-black">
           Welcome to ThaPact Music Collective
@@ -59,9 +59,8 @@ export default function LandingPage() {
           <HamburgerMenu />
         </div>
       </div>
-      <div></div>
       <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        className="flex justify-center items-center mb-10"
         variants={arrowVariants}
         animate="animate"
       >

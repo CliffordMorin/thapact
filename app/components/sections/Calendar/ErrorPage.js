@@ -1,39 +1,20 @@
 import React from "react";
-import {
-  Paper,
-  Typography,
-  Grid,
-  Box,
-  useMediaQuery,
-  Button,
-  Link,
-} from "@mui/material";
+import { Paper, Typography, Grid, Box, Button, Link } from "@mui/material";
 
 const ErrorPage = ({ error }) => {
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-
   return (
     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-      <Box
-        sx={{
-          width: isMobile ? "100%" : "50%",
-          textAlign: "center",
-        }}
-      >
-        <Paper
-          sx={{
-            p: isMobile ? 4 : 8,
-          }}
-        >
+      <Box className="w-full md:w-1/2 text-center">
+        <Paper className="p-4 md:p-8" sx={{ backgroundColor: "#FEFCE8" }}>
           <Typography
             variant="h6"
-            sx={{ mb: 2, textAlign: "center", color: "text.colorful" }}
+            sx={{ mb: 2, textAlign: "center", color: "#333333" }}
           >
             There was an error loading the shows, reload the page to try again.
             If the problem persists, please contact us or my website developer.
           </Typography>
           <Link
-            href="mailto:cliffthedev@gmail.com?subject=Joan%20Fort%20Calendar%20Error"
+            href="mailto:cliffthedev@gmail.com?subject=Tha%20Pact%20Calendar%20Error"
             target="_blank"
           >
             <Button

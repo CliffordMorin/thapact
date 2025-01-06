@@ -1,42 +1,22 @@
 import React from "react";
-import {
-  Paper,
-  Typography,
-  Grid,
-  Box,
-  Link,
-  Button,
-  useMediaQuery,
-} from "@mui/material";
+import { Paper, Typography, Grid, Box, Link, Button } from "@mui/material";
 import { SiBandsintown } from "react-icons/si";
 
 const API_KEY = process.env.REACT_APP_BANDSINTOWN_API_KEY;
-const ARTIST_ID = "14237269";
+const ARTIST_ID = "15570112";
 
 const EmptyCalendar = () => {
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-
   return (
     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-      <Box
-        sx={{
-          width: isMobile ? "100%" : "50%",
-          my: isMobile ? 0 : 4,
-          textAlign: "center",
-        }}
-      >
-        <Paper
-          sx={{
-            p: isMobile ? 4 : 8,
-          }}
-        >
+      <Box className="w-full md:w-1/2 my-0 md:my-4 text-center">
+        <Paper className="p-4 md:p-8" sx={{ backgroundColor: "#FEFCE8" }}>
           <Typography
             variant="h3"
-            sx={{ mb: 2, textAlign: "center", color: "text.colorful" }}
+            sx={{ mb: 2, textAlign: "center", color: "#333333" }}
           >
             No shows scheduled
           </Typography>
-          <Typography variant="h6" color="text.colorful">
+          <Typography variant="h6">
             There are currently shows scheduled. Please check back later! Or you
             can track us on Bandsintown to get notified when new shows are
             announced.

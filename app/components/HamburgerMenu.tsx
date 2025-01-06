@@ -24,7 +24,7 @@ const HamburgerMenu: React.FC = () => {
       >
         <motion.span
           className={`block w-14 h-2 rounded transition-colors duration-300 ${
-            isOpen ? "bg-black" : "bg-white"
+            isOpen ? "bg-black" : "bg-yellow-50"
           }`}
           animate={{
             rotate: isOpen ? 45 : 0,
@@ -35,14 +35,14 @@ const HamburgerMenu: React.FC = () => {
         />
         <motion.span
           className={`block w-20 h-2 rounded transition-opacity duration-300 ${
-            isOpen ? "bg-black" : "bg-white"
+            isOpen ? "bg-black" : "bg-yellow-50"
           }`}
           animate={{ rotate: isOpen ? -45 : 0 }}
           transition={{ duration: 0.3 }}
         />
         <motion.span
           className={`block w-10 h-2 rounded transition-colors duration-300 ${
-            isOpen ? "bg-black" : "bg-white"
+            isOpen ? "bg-black" : "bg-yellow-50"
           }`}
           animate={{
             rotate: isOpen ? 45 : 0,
@@ -96,7 +96,7 @@ const HamburgerMenu: React.FC = () => {
                   href="#"
                   className="relative text-black text-[17vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw]"
                   onClick={toggleMenu}
-                  whileTap={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.2 }}
                 >
                   {item.text}
                   <span

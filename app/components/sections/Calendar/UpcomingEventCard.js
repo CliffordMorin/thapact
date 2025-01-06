@@ -1,21 +1,14 @@
 import { Box, Typography, Button, Link } from "@mui/material";
 
-const PrevEventCard = ({ event }) => {
-  const { venue, datetime, url } = event;
+const UpcomingEventCard = ({ event }) => {
+  const { venue, datetime, url, title } = event;
   const date = new Date(datetime).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
-  const formatName = venue?.name?.split("@");
-  const bandName = formatName[0]?.trim();
-  const venueFormatName = formatName[1]?.trim()?.split("(");
-  const venueName =
-    venueFormatName && venueFormatName.length > 0
-      ? venueFormatName[0]?.trim()
-      : null;
+  const formatTitle = title?.split("@")[0].trim();
 
-  const venueDisplay = venueName ? venueName : null;
-  const bandDisplay = bandName ? bandName : null;
+  console.log(formatTitle);
 
   return (
     <Box
@@ -23,7 +16,7 @@ const PrevEventCard = ({ event }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "stretch",
-        backgroundColor: "background.paper",
+        backgroundColor: "#333333",
         borderRadius: 2,
         overflow: "hidden",
         boxShadow: 4,
@@ -36,8 +29,8 @@ const PrevEventCard = ({ event }) => {
         sx={{
           display: "flex",
           alignItems: "center",
-          bgcolor: "primary.main",
-          color: "primary.contrastText",
+          bgcolor: "#FEFCE8",
+          color: "#000000",
           py: 1,
           px: 2,
         }}
@@ -52,9 +45,9 @@ const PrevEventCard = ({ event }) => {
             mr: 1,
           }}
         >
-          <Typography variant="body">{`${venue.city}, ${venue.country}`}</Typography>
+          <Typography variant="body">{venue.location}</Typography>
         </Box>
-        <Typography variant="body">{venueDisplay}</Typography>
+        <Typography variant="body">{venue.name}</Typography>
       </Box>
       <Box
         sx={{
@@ -66,7 +59,7 @@ const PrevEventCard = ({ event }) => {
       >
         <Box
           sx={{
-            bgcolor: "text.colorful",
+            bgcolor: "#FEFCE8",
             borderRadius: 2,
             px: 2.5,
             py: 2,
@@ -78,32 +71,32 @@ const PrevEventCard = ({ event }) => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="h5" color="background.paper">
+          <Typography variant="h5" color="#333333">
             {date.split(" ")[0].toUpperCase()}
           </Typography>
-          <Typography variant="body1" color="background.paper">
+          <Typography variant="body1" color="#333333">
             {date.split(" ")[1]}
           </Typography>
         </Box>
         <Typography
           variant="h5"
           sx={{
-            color: "text.colorful",
+            color: "#FEFCE8",
             mr: 2,
             "@media (max-width:600px)": {
               fontSize: "1rem",
             },
           }}
         >
-          {bandDisplay}
+          {formatTitle}
         </Typography>
         <Link href={url} target="_blank" rel="noreferrer">
           <Button
             variant="contained"
             size="medium"
-            sx={{ color: "text.dark", bgcolor: "text.colorful" }}
+            sx={{ color: "#333333", bgcolor: "#FEFCE8" }}
           >
-            VIEW EVENT
+            RSVP
           </Button>
         </Link>
       </Box>
@@ -111,4 +104,4 @@ const PrevEventCard = ({ event }) => {
   );
 };
 
-export default PrevEventCard;
+export default UpcomingEventCard;

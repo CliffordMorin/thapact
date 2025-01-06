@@ -1,3 +1,5 @@
+"use client";
+
 import { React, useState, useEffect, useCallback } from "react";
 import {
   Container,
@@ -7,8 +9,6 @@ import {
   Divider,
   Link,
 } from "@mui/material";
-import { Bounce } from "react-awesome-reveal";
-import useTheme from "@mui/material/styles/useTheme";
 import Head from "next/head";
 import { SiBandsintown } from "react-icons/si";
 import UpcomingEventCard from "./UpcomingEventCard";
@@ -17,11 +17,10 @@ import EmptyCalendar from "./EmptyCalendar";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 
-const API_KEY = process.env.REACT_APP_BANDSINTOWN_API_KEY;
-const ARTIST_ID = "14237269";
+const API_KEY = process.env.NEXT_PUBLIC_BANDSINTOWN_API_KEY;
+const ARTIST_ID = "15570112";
 
 const CalendarV2 = () => {
-  const theme = useTheme();
   const [visibleEvents, setVisibleEvents] = useState(5);
   const [events, setEvents] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -45,7 +44,7 @@ const CalendarV2 = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://rest.bandsintown.com/v3.1/artists/josh%20lee%20and%20the%20extended%20family/events?app_id=${API_KEY}&date=${selectedDate}`
+        `https://rest.bandsintown.com/v3.1/artists/thapact/events?app_id=${API_KEY}&date=${selectedDate}`
       );
       const data = await response.json();
       if (selectedDate === "past") {
@@ -82,14 +81,14 @@ const CalendarV2 = () => {
       <Typography
         variant="h2"
         align="center"
-        sx={{ pt: 5, pb: 2, color: theme.palette.text.colorful }}
+        sx={{ pt: 5, pb: 2, color: "#FEFCE8" }}
       >
-        <Bounce>{toggleShows}</Bounce>
+        <div className="animate-bounce">{toggleShows}</div>
       </Typography>
       <Divider
         sx={{
           zIndex: "100",
-          backgroundColor: theme.palette.text.colorful,
+          backgroundColor: "#FEFCE8",
           height: "2px",
           width: "100px",
           margin: "auto",
@@ -110,10 +109,10 @@ const CalendarV2 = () => {
               size="medium"
               sx={{
                 mt: 2,
-                backgroundColor: "text.colorful",
-                color: "text.dark",
+                backgroundColor: "#FEFCE8",
+                color: "#000000",
                 "&:hover": {
-                  backgroundColor: "text.colorfulHover",
+                  backgroundColor: "#E5E4C2",
                 },
               }}
               onClick={handleToggleShows}
@@ -151,9 +150,15 @@ const CalendarV2 = () => {
             >
               <Button
                 variant="contained"
-                color="secondary"
                 size="large"
-                sx={{ mt: 2 }}
+                sx={{
+                  mt: 2,
+                  backgroundColor: "#FEFCE8",
+                  color: "#000000",
+                  "&:hover": {
+                    backgroundColor: "#E5E4C2",
+                  },
+                }}
                 onClick={handleLoadMore}
               >
                 Show More Events ({events.length - visibleEvents})
