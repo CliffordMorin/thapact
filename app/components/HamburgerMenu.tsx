@@ -7,6 +7,15 @@ const HamburgerMenu: React.FC = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const menuItems = [
+    { text: "Home", number: "01" },
+    { text: "About", number: "02" },
+    { text: "Shows", number: "03" },
+    { text: "Media", number: "04" },
+    { text: "Listen", number: "05" },
+    { text: "Contact", number: "06" },
+  ];
+
   return (
     <div className="z-50">
       <button
@@ -49,7 +58,7 @@ const HamburgerMenu: React.FC = () => {
           onClick={toggleMenu}
         >
           <div
-            className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50"
+            className="fixed inset-0 bg-yellow-50 flex flex-col items-center justify-center z-50"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the menu
           >
             <button
@@ -80,31 +89,25 @@ const HamburgerMenu: React.FC = () => {
                 transition={{ duration: 0.3 }}
               />
             </button>
-            <nav className="flex flex-col space-y-4 text-center">
-              <motion.a
-                href="#"
-                className="text-black text-2xl"
-                onClick={toggleMenu}
-                whileTap={{ scale: 1.2 }}
-              >
-                Home
-              </motion.a>
-              <motion.a
-                href="#"
-                className="text-black text-2xl"
-                onClick={toggleMenu}
-                whileTap={{ scale: 1.2 }}
-              >
-                About
-              </motion.a>
-              <motion.a
-                href="#"
-                className="text-black text-2xl"
-                onClick={toggleMenu}
-                whileTap={{ scale: 1.2 }}
-              >
-                Contact
-              </motion.a>
+            <nav className="flex flex-col space-y-1 text-center">
+              {menuItems.map((item, index) => (
+                <motion.a
+                  key={item.text}
+                  href="#"
+                  className="relative text-black text-[17vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw]"
+                  onClick={toggleMenu}
+                  whileTap={{ scale: 1.2 }}
+                >
+                  {item.text}
+                  <span
+                    className={`absolute text-xs font-serif ${
+                      index % 2 === 0 ? "top-0 right--2" : "top-0 left-0"
+                    }`}
+                  >
+                    {item.number}
+                  </span>
+                </motion.a>
+              ))}
             </nav>
           </div>
         </div>
