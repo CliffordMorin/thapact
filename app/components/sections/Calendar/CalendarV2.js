@@ -17,7 +17,6 @@ import EmptyCalendar from "./EmptyCalendar";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 
-const API_KEY = process.env.NEXT_PUBLIC_BANDSINTOWN_API_KEY;
 const ARTIST_ID = "15570112";
 
 const CalendarV2 = () => {
@@ -27,6 +26,7 @@ const CalendarV2 = () => {
   const [error, setError] = useState(null);
   const [toggleShows, setToggleShows] = useState("UPCOMING SHOWS");
   const [date, setDate] = useState("upcoming");
+  const [apiKey, setApiKey] = useState("");
 
   const handleToggleShows = () => {
     if (toggleShows === "PREVIOUS SHOWS") {
@@ -43,18 +43,19 @@ const CalendarV2 = () => {
   const fetchEvents = useCallback(async (selectedDate) => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `https://rest.bandsintown.com/v3.1/artists/thapact/events?app_id=${API_KEY}&date=${selectedDate}`
-      );
+      const response = await fetch(`/api/events?date=${selectedDate}`);
       const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to fetch events");
+      }
       if (selectedDate === "past") {
         data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
       }
 
       setEvents(data);
     } catch (error) {
-      console.log(error);
-      setError(error);
+      console.error("Failed to fetch events:", error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -67,6 +68,16 @@ const CalendarV2 = () => {
   useEffect(() => {
     fetchEvents(date);
   }, [fetchEvents, date]);
+
+  useEffect(() => {
+    const fetchApiKey = async () => {
+      const response = await fetch("/api/getApiKey");
+      const data = await response.json();
+      setApiKey(data.apiKey);
+    };
+
+    fetchApiKey();
+  }, []);
 
   return (
     <div>
@@ -146,7 +157,7 @@ const CalendarV2 = () => {
           ) : error ? (
             <ErrorPage error={error} />
           ) : (
-            <EmptyCalendar />
+            <EmptyCalendar apiKey={apiKey} />
           )}
           {visibleEvents < events.length && (
             <Grid
@@ -172,27 +183,29 @@ const CalendarV2 = () => {
             </Grid>
           )}
           <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-            <Link
-              href={`https://bandsintown.com/artist-subscribe/${ARTIST_ID}?app_id=${API_KEY}&came_from=267&utm_source=public_api&utm_medium=api&utm_campaign=track`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button
-                variant="contained"
-                size="large"
-                sx={{
-                  mt: 2,
-                  backgroundColor: "#00B4B3",
-                  color: "background.paper",
-                  "&:hover": {
-                    backgroundColor: "#00d9d8",
-                  },
-                }}
+            {apiKey && (
+              <Link
+                href={`https://bandsintown.com/artist-subscribe/${ARTIST_ID}?app_id=${apiKey}&came_from=267&utm_source=public_api&utm_medium=api&utm_campaign=track`}
+                target="_blank"
+                rel="noreferrer"
               >
-                <SiBandsintown size="1.5em" style={{ marginRight: "25px" }} />
-                Track On Bandsintown
-              </Button>
-            </Link>
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    mt: 2,
+                    backgroundColor: "#00B4B3",
+                    color: "background.paper",
+                    "&:hover": {
+                      backgroundColor: "#00d9d8",
+                    },
+                  }}
+                >
+                  <SiBandsintown size="1.5em" style={{ marginRight: "25px" }} />
+                  Track on Bandsintown
+                </Button>
+              </Link>
+            )}
           </Grid>
         </Grid>
       </Container>

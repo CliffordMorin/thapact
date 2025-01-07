@@ -2,6 +2,9 @@ import React from "react";
 import { Paper, Typography, Grid, Box, Button, Link } from "@mui/material";
 
 const ErrorPage = ({ error }) => {
+  const mailtoLink = `mailto:cliffthedev@gmail.com?subject=Tha%20Pact%20Calendar%20Error&body=${encodeURIComponent(
+    `An error occurred: ${error}`
+  )}`;
   return (
     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="w-full md:w-1/2 text-center">
@@ -13,10 +16,7 @@ const ErrorPage = ({ error }) => {
             There was an error loading the shows, reload the page to try again.
             If the problem persists, please contact us or my website developer.
           </Typography>
-          <Link
-            href="mailto:cliffthedev@gmail.com?subject=Tha%20Pact%20Calendar%20Error"
-            target="_blank"
-          >
+          <Link href={mailtoLink} target="_blank">
             <Button
               variant="contained"
               size="medium"
@@ -34,7 +34,7 @@ const ErrorPage = ({ error }) => {
           </Link>
 
           <Typography variant="h6" color="text.colorful">
-            {error.message}
+            {error}
           </Typography>
         </Paper>
       </Box>

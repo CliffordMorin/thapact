@@ -2,10 +2,10 @@ import React from "react";
 import { Paper, Typography, Grid, Box, Link, Button } from "@mui/material";
 import { SiBandsintown } from "react-icons/si";
 
-const API_KEY = process.env.REACT_APP_BANDSINTOWN_API_KEY;
+// const API_KEY = process.env.NEXT_PUBLIC_BANDSINTOWN_API_KEY;
 const ARTIST_ID = "15570112";
 
-const EmptyCalendar = () => {
+const EmptyCalendar = ({ apiKey }) => {
   return (
     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
       <Box className="w-full md:w-1/2 my-0 md:my-4 text-center">
@@ -23,7 +23,7 @@ const EmptyCalendar = () => {
           </Typography>
           <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
             <Link
-              href={`https://bandsintown.com/artist-subscribe/${ARTIST_ID}?app_id=${API_KEY}&came_from=267&utm_source=public_api&utm_medium=api&utm_campaign=play_my_city&play_my_city=true`}
+              href={`https://bandsintown.com/artist-subscribe/${ARTIST_ID}?app_id=${apiKey}&came_from=267&utm_source=public_api&utm_medium=api&utm_campaign=play_my_city&play_my_city=true`}
               target="_blank"
               rel="noreferrer"
             >
