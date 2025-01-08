@@ -1,20 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentSection, setCurrentSection] = useState("home");
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const menuItems = [
-    { text: "Home", number: "01", to: "home" },
-    { text: "About", number: "02", to: "about" },
-    { text: "Shows", number: "03", to: "shows" },
-    { text: "Media", number: "04", to: "media" },
-    { text: "Listen", number: "05", to: "listen" },
-    { text: "Contact", number: "06", to: "contact" },
-  ];
+  const menuItems = useMemo(
+    () => [
+      { text: "Home", number: "01", to: "home" },
+      { text: "About", number: "02", to: "about" },
+      { text: "Shows", number: "03", to: "shows" },
+      { text: "Media", number: "04", to: "media" },
+      { text: "Listen", number: "05", to: "listen" },
+      { text: "Contact", number: "06", to: "contact" },
+    ],
+    []
+  );
 
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
@@ -28,6 +33,37 @@ const HamburgerMenu = () => {
     handleScroll(id);
     toggleMenu();
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCurrentSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 } // Adjust threshold as needed
+    );
+
+    const currentRefs = sectionRefs.current;
+    menuItems.forEach((item) => {
+      const element = document.getElementById(item.to);
+      if (element) {
+        currentRefs[item.to] = element;
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      menuItems.forEach((item) => {
+        const element = currentRefs[item.to];
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, [menuItems]);
 
   return (
     <div className="z-50">
@@ -106,8 +142,9 @@ const HamburgerMenu = () => {
               {menuItems.map((item, index) => (
                 <motion.a
                   key={item.text}
-                  href="#"
-                  className="relative text-black text-[17vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw]"
+                  className={`relative text-[17vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw] ${
+                    currentSection === item.to ? "text-red-500" : "text-black"
+                  }`}
                   onClick={() => handleClick(item.to)}
                   whileHover={{ scale: 1.2 }}
                 >
