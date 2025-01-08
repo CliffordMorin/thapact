@@ -2,19 +2,32 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const HamburgerMenu: React.FC = () => {
+const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const menuItems = [
-    { text: "Home", number: "01" },
-    { text: "About", number: "02" },
-    { text: "Shows", number: "03" },
-    { text: "Media", number: "04" },
-    { text: "Listen", number: "05" },
-    { text: "Contact", number: "06" },
+    { text: "Home", number: "01", to: "home" },
+    { text: "About", number: "02", to: "about" },
+    { text: "Shows", number: "03", to: "shows" },
+    { text: "Media", number: "04", to: "media" },
+    { text: "Listen", number: "05", to: "listen" },
+    { text: "Contact", number: "06", to: "contact" },
   ];
+
+  const handleScroll = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
+
+  const handleClick = (id: string) => {
+    handleScroll(id);
+    toggleMenu();
+  };
 
   return (
     <div className="z-50">
@@ -95,7 +108,7 @@ const HamburgerMenu: React.FC = () => {
                   key={item.text}
                   href="#"
                   className="relative text-black text-[17vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw]"
-                  onClick={toggleMenu}
+                  onClick={() => handleClick(item.to)}
                   whileHover={{ scale: 1.2 }}
                 >
                   {item.text}
