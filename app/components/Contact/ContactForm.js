@@ -1,9 +1,10 @@
+"use client";
+
 import React, { useState, useRef } from "react";
 import { Grid, TextField, Button } from "@mui/material";
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import makeStyles from "./styles";
 
 const SERVICE_ID = process.env.REACT_APP_EMAIL_SERVICE_ID;
 const TEMPLATE_ID = process.env.REACT_APP_EMAIL_TEMPLATE_ID;
@@ -16,7 +17,6 @@ const ContactForm = () => {
   const [message, setMessage] = useState("");
 
   const formRef = useRef();
-  const classes = makeStyles();
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -63,6 +63,27 @@ const ContactForm = () => {
     setMessage("");
   };
 
+  const inputStyle = {
+    color: "#333333",
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#000000", // set border color for active state
+      },
+      "&:hover fieldset": {
+        borderColor: "#333333", // set border color for hover state
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#333333", // set border color for focused state
+      },
+      "&.Mui-disabled .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#333333", // set border color for disabled state
+      },
+    },
+    "& .MuiFormLabel-root": {
+      color: "#000000", // set label color
+    },
+  };
+
   return (
     <form ref={formRef} onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
       <ToastContainer />
@@ -71,7 +92,7 @@ const ContactForm = () => {
           <TextField
             id="firstName"
             label="First Name"
-            className={classes.inputStyle}
+            sx={inputStyle}
             variant="outlined"
             fullWidth
             required
@@ -79,9 +100,6 @@ const ContactForm = () => {
             name="firstName"
             value={firstName}
             color="primary"
-            InputProps={{
-              classes: { root: classes.inputStyle },
-            }}
             onChange={(e) => setFirstName(e.target.value)}
             onKeyDown={handleKeyDown}
           />
@@ -90,7 +108,7 @@ const ContactForm = () => {
           <TextField
             id="lastName"
             label="Last Name"
-            className={classes.inputStyle}
+            sx={inputStyle}
             variant="outlined"
             fullWidth
             required
@@ -98,9 +116,6 @@ const ContactForm = () => {
             name="lastName"
             value={lastName}
             color="primary"
-            InputProps={{
-              classes: { root: classes.inputStyle },
-            }}
             onChange={(e) => setLastName(e.target.value)}
             onKeyDown={handleKeyDown}
           />
@@ -109,7 +124,7 @@ const ContactForm = () => {
           <TextField
             id="email"
             label="Email"
-            className={classes.inputStyle}
+            sx={inputStyle}
             variant="outlined"
             fullWidth
             required
@@ -117,9 +132,6 @@ const ContactForm = () => {
             name="email"
             value={email}
             color="primary"
-            InputProps={{
-              classes: { root: classes.inputStyle },
-            }}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={handleKeyDown}
           />
@@ -128,7 +140,7 @@ const ContactForm = () => {
           <TextField
             id="message"
             label="Message"
-            className={classes.inputStyle}
+            sx={inputStyle}
             variant="outlined"
             fullWidth
             multiline
@@ -138,9 +150,6 @@ const ContactForm = () => {
             value={message}
             name="message"
             color="primary"
-            InputProps={{
-              classes: { root: classes.inputStyle },
-            }}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
           />

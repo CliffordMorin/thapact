@@ -2,6 +2,9 @@ import LandingPage from "./components/sections/LandingPage";
 import AboutSection from "./components/sections/AboutSection";
 import Calendar from "./components/sections/Calendar/CalendarV2.js";
 import Media from "./components/sections/Media";
+import Listen from "./components/sections/Listen";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/sections/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +21,13 @@ export default function Home() {
       <section id="media">
         <Media />
       </section>
+      <section id="listen">
+        <Listen />
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
+      <Footer />
     </main>
   );
 }
