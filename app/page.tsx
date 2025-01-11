@@ -3,7 +3,7 @@ import AboutSection from "./components/sections/AboutSection";
 import Calendar from "./components/sections/Calendar/CalendarV2.js";
 import Media from "./components/sections/Media";
 import Listen from "./components/sections/Listen";
-import Contact from "./components/Contact/Contact";
+import Contact from "./components/sections/Contact/Contact";
 import Footer from "./components/sections/Footer";
 
 export default function Home() {

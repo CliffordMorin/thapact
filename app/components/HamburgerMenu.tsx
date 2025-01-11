@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -33,6 +35,21 @@ const HamburgerMenu = () => {
     handleScroll(id);
     toggleMenu();
   };
+
+  const handleWindowScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleWindowScroll);
+    return () => {
+      window.removeEventListener("scroll", handleWindowScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,7 +83,12 @@ const HamburgerMenu = () => {
   }, [menuItems]);
 
   return (
-    <div className="z-50">
+    <div
+      ref={menuRef}
+      className={`fixed top-7 right-0 p-4 md:p-8 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-gray-800 bg-opacity-75 rounded-full" : ""
+      }`}
+    >
       <button
         className="flex flex-col items-left justify-center w-15 h-15 space-y-3 z-50 md:w-20 md:h-20"
         onClick={toggleMenu}
@@ -111,7 +133,7 @@ const HamburgerMenu = () => {
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the menu
           >
             <button
-              className="absolute top-20 right-5 flex flex-col items-right justify-center space-y-3 z-50 w-15 h-15 md:w-20 md:h-20 md:top-5" // styling for location of close button
+              className="absolute top-12 right-5 flex flex-col items-right justify-center space-y-3 z-50 w-15 h-15 md:w-20 md:h-20 md:top-5" // styling for location of close button
               onClick={toggleMenu}
             >
               <motion.span
@@ -142,7 +164,7 @@ const HamburgerMenu = () => {
               {menuItems.map((item, index) => (
                 <motion.a
                   key={item.text}
-                  className={`relative text-[17vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw] ${
+                  className={`relative text-[15vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw] ${
                     currentSection === item.to ? "text-red-500" : "text-black"
                   }`}
                   onClick={() => handleClick(item.to)}

@@ -47,7 +47,7 @@ export default function LandingPage() {
         className="object-cover"
       />
 
-      <div className="absolute top-10 w-full flex justify-between items-center px-4 md:top-4">
+      <div className="absolute top-1 w-full flex justify-between items-center px-4 md:top-4">
         <div className="flex items-center md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:-top-10">
           <Image
             src={Logo}

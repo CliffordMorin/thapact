@@ -9,7 +9,6 @@ import {
   Divider,
   Link,
 } from "@mui/material";
-import Head from "next/head";
 import { SiBandsintown } from "react-icons/si";
 import UpcomingEventCard from "./UpcomingEventCard";
 import PrevEventCard from "./PrevEventCard";
@@ -81,14 +80,6 @@ const CalendarV2 = () => {
 
   return (
     <div>
-      <Head>
-        <title>ThaPact | Calendar</title>
-        <meta
-          name="description"
-          content="ThaPact Calendar with dates of upcoming shows, concerts and public events."
-        />
-        <link rel="canonical" href="/calendar" />
-      </Head>
       <Typography
         variant="h2"
         align="center"
@@ -98,6 +89,7 @@ const CalendarV2 = () => {
           color: "#FEFCE8",
           fontFamily: "Canela-Light, sans-serif",
           fontWeight: "bold",
+          fontSize: "3rem",
         }}
       >
         <div>{toggleShows}</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Typography, Paper, Link } from "@mui/material";
 
-const Page404 = () => {
+const Custom404 = () => {
   return (
     <Container align="center" sx={{ my: 10 }}>
       <Paper elevation={16} align="center" sx={{ p: 5 }}>
@@ -32,4 +32,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export default Custom404;
