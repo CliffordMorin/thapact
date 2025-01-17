@@ -1,6 +1,6 @@
 "use client";
 
-import { React, useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Container,
   Typography,
@@ -53,7 +53,7 @@ const CalendarV2 = () => {
 
       setEvents(data);
     } catch (error) {
-      console.error("Failed to fetch events:", error);
+      console.error("Failed to fetch events for date:", selectedDate, error);
       setError(error.message);
     } finally {
       setLoading(false);
@@ -70,7 +70,7 @@ const CalendarV2 = () => {
 
   useEffect(() => {
     const fetchApiKey = async () => {
-      const response = await fetch("/api/getApiKey");
+      const response = await fetch("/api/events");
       const data = await response.json();
       setApiKey(data.apiKey);
     };
@@ -137,7 +137,7 @@ const CalendarV2 = () => {
           {isLoading ? (
             <LoadingPage />
           ) : events.length > 0 ? (
-            events?.slice(0, visibleEvents).map((event) => (
+            events.slice(0, visibleEvents).map((event) => (
               <Grid key={event.id} item xs={12}>
                 {toggleShows === "UPCOMING SHOWS" ? (
                   <UpcomingEventCard event={event} />

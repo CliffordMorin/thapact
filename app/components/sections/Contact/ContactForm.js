@@ -6,9 +6,9 @@ import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SERVICE_ID = process.env.REACT_APP_EMAIL_SERVICE_ID;
-const TEMPLATE_ID = process.env.REACT_APP_EMAIL_TEMPLATE_ID;
-const USER_ID = process.env.REACT_APP_EMAIL_USER_ID;
+const SERVICE_ID = process.env.EMAIL_SERVICE_ID;
+const TEMPLATE_ID = process.env.EMAIL_TEMPLATE_ID;
+const USER_ID = process.env.EMAIL_USER_ID;
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
