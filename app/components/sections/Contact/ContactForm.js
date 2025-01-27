@@ -2,13 +2,8 @@
 
 import React, { useState, useRef } from "react";
 import { Grid, TextField, Button } from "@mui/material";
-import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const SERVICE_ID = process.env.EMAIL_SERVICE_ID;
-const TEMPLATE_ID = process.env.EMAIL_TEMPLATE_ID;
-const USER_ID = process.env.EMAIL_USER_ID;
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -26,7 +21,7 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if required fields are filled
@@ -38,29 +33,36 @@ const ContactForm = () => {
       return;
     }
 
-    // If all required fields are filled, submit the form
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, USER_ID).then(
-      (result) => {
-        toast.success(
-          "Thank you for your inquiry, we will get back to you as soon as possible!",
-          { theme: "colored", position: "bottom-left" }
-        );
-        console.log(result.text);
-      },
-      (error) => {
-        toast.error("Message failed to send, sorry. Please try again later.", {
-          theme: "colored",
-          position: "bottom-left",
-        });
-        console.log(error.text);
-      }
-    );
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, lastName, email, message }),
+      });
 
-    // Clear the form inputs
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setMessage("");
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+
+      toast.success(
+        "Thank you for your inquiry, we will get back to you as soon as possible!",
+        { theme: "colored", position: "bottom-left" }
+      );
+
+      // Clear the form inputs
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast.error("Message failed to send, sorry. Please try again later.", {
+        theme: "colored",
+        position: "bottom-left",
+      });
+    }
   };
 
   const inputStyle = {

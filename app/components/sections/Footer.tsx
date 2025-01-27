@@ -1,9 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { FaYoutube, FaInstagram, FaFacebook, FaSpotify } from "react-icons/fa";
 
-const currentYear = new Date().getFullYear();
-
 export default function Footer() {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div
       style={{

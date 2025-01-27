@@ -46,7 +46,6 @@ export default function Media() {
             <Image
               src={photo.src}
               alt={photo.alt}
-              layout="responsive"
               width={photo.size === "landscape" ? 500 : 250}
               height={250}
               className="object-cover w-full h-full"

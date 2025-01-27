@@ -65,17 +65,21 @@ const CalendarV2 = () => {
   };
 
   useEffect(() => {
-    fetchEvents(date);
+    if (typeof window !== "undefined") {
+      fetchEvents(date);
+    }
   }, [fetchEvents, date]);
 
   useEffect(() => {
-    const fetchApiKey = async () => {
-      const response = await fetch("/api/events");
-      const data = await response.json();
-      setApiKey(data.apiKey);
-    };
+    if (typeof window !== "undefined") {
+      const fetchApiKey = async () => {
+        const response = await fetch("/api/events");
+        const data = await response.json();
+        setApiKey(data.apiKey);
+      };
 
-    fetchApiKey();
+      fetchApiKey();
+    }
   }, []);
 
   return (

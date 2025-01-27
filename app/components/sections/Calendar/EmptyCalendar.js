@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Paper, Typography, Grid, Box, Link, Button } from "@mui/material";
 import { SiBandsintown } from "react-icons/si";

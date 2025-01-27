@@ -45,49 +45,51 @@ const HamburgerMenu = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleWindowScroll);
-    return () => {
-      window.removeEventListener("scroll", handleWindowScroll);
-    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleWindowScroll);
+      return () => {
+        window.removeEventListener("scroll", handleWindowScroll);
+      };
+    }
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setCurrentSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.6 } // Adjust threshold as needed
-    );
+    if (typeof window !== "undefined") {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setCurrentSection(entry.target.id);
+            }
+          });
+        },
+        { threshold: 0.6 } // Adjust threshold as needed
+      );
 
-    const currentRefs = sectionRefs.current;
-    menuItems.forEach((item) => {
-      const element = document.getElementById(item.to);
-      if (element) {
-        currentRefs[item.to] = element;
-        observer.observe(element);
-      }
-    });
-
-    return () => {
+      const currentRefs = sectionRefs.current;
       menuItems.forEach((item) => {
-        const element = currentRefs[item.to];
+        const element = document.getElementById(item.to);
         if (element) {
-          observer.unobserve(element);
+          currentRefs[item.to] = element;
+          observer.observe(element);
         }
       });
-    };
+
+      return () => {
+        menuItems.forEach((item) => {
+          const element = currentRefs[item.to];
+          if (element) {
+            observer.unobserve(element);
+          }
+        });
+      };
+    }
   }, [menuItems]);
 
   return (
     <div
       ref={menuRef}
-      className={`fixed top-7 right-0 p-4 md:p-8 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-gray-800 bg-opacity-75 rounded-full" : ""
-      }`}
+      className="fixed top-7 right-0 p-4 md:p-8 z-50 transition-all duration-300"
     >
       <button
         className="flex flex-col items-left justify-center w-15 h-15 space-y-3 z-50 md:w-20 md:h-20"
@@ -96,7 +98,7 @@ const HamburgerMenu = () => {
         <motion.span
           className={`block w-14 h-2 rounded transition-colors duration-300 ${
             isOpen ? "bg-black" : "bg-yellow-50"
-          }`}
+          } ${isScrolled ? "shadow-2xl" : ""}`}
           animate={{
             rotate: isOpen ? 45 : 0,
             x: isOpen ? 4 : 0,
@@ -107,14 +109,14 @@ const HamburgerMenu = () => {
         <motion.span
           className={`block w-20 h-2 rounded transition-opacity duration-300 ${
             isOpen ? "bg-black" : "bg-yellow-50"
-          }`}
+          } ${isScrolled ? "shadow-2xl" : ""}`}
           animate={{ rotate: isOpen ? -45 : 0 }}
           transition={{ duration: 0.3 }}
         />
         <motion.span
           className={`block w-10 h-2 rounded transition-colors duration-300 ${
             isOpen ? "bg-black" : "bg-yellow-50"
-          }`}
+          } ${isScrolled ? "shadow-2xl" : ""}`}
           animate={{
             rotate: isOpen ? 45 : 0,
             y: isOpen ? -6 : 0,
@@ -164,7 +166,7 @@ const HamburgerMenu = () => {
               {menuItems.map((item, index) => (
                 <motion.a
                   key={item.text}
-                  className={`relative text-[15vw] font-canelaLight leading-tight md:text-[8vw] 2xl:text-[4vw] ${
+                  className={`relative text-[15vw] font-canelaLight leading-tight md:text-[5vw] 2xl:text-[4vw] ${
                     currentSection === item.to ? "text-red-500" : "text-black"
                   }`}
                   onClick={() => handleClick(item.to)}
