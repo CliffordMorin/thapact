@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Grid, TextField, Button } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import emailjs from "@emailjs/browser";
 import "react-toastify/dist/ReactToastify.css";
 
 const ContactForm = () => {
@@ -10,8 +11,27 @@ const ContactForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [emailConfig, setEmailConfig] = useState({
+    serviceId: "",
+    templateId: "",
+    userId: "",
+  });
 
   const formRef = useRef();
+
+  useEffect(() => {
+    const fetchEmailConfig = async () => {
+      try {
+        const response = await fetch("/api/sendEmail");
+        const data = await response.json();
+        setEmailConfig(data);
+      } catch (error) {
+        console.error("Failed to fetch email configuration:", error);
+      }
+    };
+
+    fetchEmailConfig();
+  }, []);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -34,16 +54,32 @@ const ContactForm = () => {
     }
 
     try {
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const data = {
+        service_id: emailConfig.serviceId,
+        template_id: emailConfig.templateId,
+        user_id: emailConfig.userId,
+        template_params: {
+          firstName,
+          lastName,
+          email,
+          message,
         },
-        body: JSON.stringify({ firstName, lastName, email, message }),
-      });
+      };
+
+      const response = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error("Failed to send email");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send email");
       }
 
       toast.success(
