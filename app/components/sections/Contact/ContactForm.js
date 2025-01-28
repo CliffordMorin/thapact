@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Grid, TextField, Button } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
-import emailjs from "@emailjs/browser";
 import "react-toastify/dist/ReactToastify.css";
 
 const ContactForm = () => {
