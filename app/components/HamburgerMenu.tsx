@@ -89,7 +89,9 @@ const HamburgerMenu = () => {
   return (
     <div
       ref={menuRef}
-      className="fixed top-7 right-0 p-4 md:p-8 z-50 transition-all duration-300"
+      className={`fixed top-7 right-0 p-4 md:p-8 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black bg-opacity-70 rounded p-2 md:p-4" : ""
+      }`}
     >
       <button
         className="flex flex-col items-left justify-center w-15 h-15 space-y-3 z-50 md:w-20 md:h-20"
