@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Flip } from "react-awesome-reveal";
 
 const photos = [
   {
@@ -43,13 +44,15 @@ export default function Media() {
               photo.size === "landscape" ? "col-span-2" : "col-span-1"
             }`}
           >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.size === "landscape" ? 750 : 500}
-              height={500}
-              className="object-cover w-full h-full"
-            />
+            <Flip cascade damper={0.05} delay={index * 100}>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.size === "landscape" ? 750 : 500}
+                height={500}
+                className="object-cover w-full h-full"
+              />
+            </Flip>
           </div>
         ))}
       </div>

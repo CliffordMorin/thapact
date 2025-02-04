@@ -1,13 +1,16 @@
 "use client";
 
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 
 const AboutSection = () => {
   return (
     <div className="text-center p-8 mt-10">
-      <h1 className="text-6xl font-bold mb-10 text-yellow-50 uppercase">
-        Our Mission
-      </h1>
+      <Fade>
+        <h1 className="text-6xl font-bold mb-10 text-yellow-50 uppercase">
+          Our Mission
+        </h1>
+      </Fade>
       <hr className="border-t-2 border-gray-300 w-24 mx-auto mb-10 text-yellow-50" />
       <p className="text-2xl font-canelaItalic text-yellow-50 italic tracking-widest lg:px-60">
         Thapact was formed with the idea that live music can be a{" "}

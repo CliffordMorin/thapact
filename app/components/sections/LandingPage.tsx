@@ -5,6 +5,7 @@ import Image from "next/image";
 import Logo from "../../../public/thaPactLogoBanner.svg";
 import FullSingerShot from "../../../public/fullSingerShot.png";
 import Popup from "../Popup";
+import { Rotate } from "react-awesome-reveal";
 import HamburgerMenu from "../HamburgerMenu";
 import { motion, Variants } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
@@ -49,11 +50,13 @@ export default function LandingPage() {
 
       <div className="absolute top-1 w-full flex justify-between items-center px-4 md:top-4">
         <div className="flex items-center md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:-top-10">
-          <Image
-            src={Logo}
-            alt="The Pact Logo"
-            className="w-[140px] h-[140px] md:w-60 md:h-60"
-          />
+          <Rotate delay={150} duration={1500}>
+            <Image
+              src={Logo}
+              alt="The Pact Logo"
+              className="w-[140px] h-[140px] md:w-60 md:h-60"
+            />
+          </Rotate>
         </div>
         <div className="flex items-center ml-auto">
           <HamburgerMenu />

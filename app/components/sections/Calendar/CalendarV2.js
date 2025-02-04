@@ -9,6 +9,7 @@ import {
   Divider,
   Link,
 } from "@mui/material";
+import { Fade } from "react-awesome-reveal";
 import { SiBandsintown } from "react-icons/si";
 import UpcomingEventCard from "./UpcomingEventCard";
 import PrevEventCard from "./PrevEventCard";
@@ -96,7 +97,9 @@ const CalendarV2 = () => {
           fontSize: "3.5rem",
         }}
       >
-        <div>{toggleShows}</div>
+        <Fade>
+          <div>{toggleShows}</div>
+        </Fade>
       </Typography>
       <Divider
         sx={{
