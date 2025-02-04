@@ -44,7 +44,7 @@ export default function Media() {
               photo.size === "landscape" ? "col-span-2" : "col-span-1"
             }`}
           >
-            <Flip cascade damper={0.05} delay={index * 100}>
+            <Flip cascade delay={index * 100}>
               <Image
                 src={photo.src}
                 alt={photo.alt}
