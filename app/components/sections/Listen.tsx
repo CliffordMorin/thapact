@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Listen() {
   return (
-    <div className="flex flex-col items-center space-y-4 p-4 h-40 h-full">
+    <div className="flex flex-col items-center space-y-4 p-10 h-40 h-full lg:p-32">
       <div className="w-full max-w-2xl">
         <iframe
           style={{ borderRadius: "12px" }}

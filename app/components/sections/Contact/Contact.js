@@ -29,9 +29,11 @@ const Contact = () => {
               sx={{
                 color: "black",
                 mb: { xs: 4, sm: 4 },
+                mt: { xs: 2, sm: 2 },
                 fontSize: { xs: "3rem", md: "4rem" },
                 fontFamily: "Canela, serif",
                 fontWeight: "bold",
+                textTransform: "uppercase",
               }}
             >
               Contact Us

@@ -89,11 +89,11 @@ const CalendarV2 = () => {
         align="center"
         sx={{
           pt: 5,
-          pb: 2,
+          pb: 5,
           color: "#FEFCE8",
           fontFamily: "Canela-Light, sans-serif",
           fontWeight: "bold",
-          fontSize: "3rem",
+          fontSize: "3.5rem",
         }}
       >
         <div>{toggleShows}</div>
@@ -105,7 +105,7 @@ const CalendarV2 = () => {
           height: "2px",
           width: "100px",
           margin: "auto",
-          mb: 2,
+          mb: 5,
         }}
       />
 
@@ -122,6 +122,7 @@ const CalendarV2 = () => {
               size="medium"
               sx={{
                 mt: 2,
+                mb: 5,
                 backgroundColor: "#FEFCE8",
                 color: "#000000",
                 "&:hover": {

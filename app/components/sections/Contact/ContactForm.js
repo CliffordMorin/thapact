@@ -124,7 +124,7 @@ const ContactForm = () => {
   return (
     <form ref={formRef} onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
       <ToastContainer />
-      <Grid container spacing={2}>
+      <Grid container spacing={2} px={2}>
         <Grid item xs={6}>
           <TextField
             id="firstName"
@@ -191,8 +191,8 @@ const ContactForm = () => {
             onKeyDown={handleKeyDown}
           />
         </Grid>
-        <Grid item xs={12} sx={{ textAlign: "center" }}>
-          <Button type="submit" variant="contained" color="primary">
+        <Grid item xs={12} sx={{ textAlign: "center" }} mb={4}>
+          <Button type="submit" variant="contained" color="error">
             Submit
           </Button>
         </Grid>

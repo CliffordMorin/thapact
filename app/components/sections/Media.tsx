@@ -34,7 +34,7 @@ const photos = [
 
 export default function Media() {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-10">
       <div className="grid grid-cols-4 gap-4 md:grid-cols-8 lg:grid-cols-12">
         {photos.map((photo, index) => (
           <div
@@ -46,8 +46,8 @@ export default function Media() {
             <Image
               src={photo.src}
               alt={photo.alt}
-              width={photo.size === "landscape" ? 500 : 250}
-              height={250}
+              width={photo.size === "landscape" ? 750 : 500}
+              height={500}
               className="object-cover w-full h-full"
             />
           </div>
