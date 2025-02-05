@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Logo from "../../../public/thaPactLogoBanner.svg";
 import FullSingerShot from "../../../public/fullSingerShot.png";
-import Popup from "../Popup";
+// import Popup from "../Popup";
 import { Rotate } from "react-awesome-reveal";
 import HamburgerMenu from "../HamburgerMenu";
 import { motion, Variants } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
 
 export default function LandingPage() {
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  // const [isPopupOpen, setIsPopupOpen] = useState(true);
 
-  const closePopup = () => setIsPopupOpen(false);
+  // const closePopup = () => setIsPopupOpen(false);
 
   const arrowVariants: Variants = {
     animate: {
@@ -28,7 +28,7 @@ export default function LandingPage() {
 
   return (
     <div className="relative h-screen flex items-end justify-center">
-      <Popup isOpen={isPopupOpen} onClose={closePopup}>
+      {/* <Popup isOpen={isPopupOpen} onClose={closePopup}>
         <h1 className="text-2xl font-bold text-center text-black">
           Welcome to ThaPact Music Collective
         </h1>
@@ -40,7 +40,7 @@ export default function LandingPage() {
           </a>
           .
         </p>
-      </Popup>
+      </Popup> */}
       <Image
         src={FullSingerShot}
         alt="Full Singer Shot"
